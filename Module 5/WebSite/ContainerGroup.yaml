@@ -1,0 +1,44 @@
+﻿apiVersion: 2019-12-01
+location: westeurope
+name: maerskGroup
+properties:
+  containers:
+  - name: website-app
+    properties:
+      image: psrepoo.azurecr.io/myfirst:v1
+      resources:
+        requests:
+          cpu: .5
+          memoryInGb: 1.5
+      ports:
+      - port: 8080
+  - name: mssql
+    properties:
+      image: mcr.microsoft.com/mssql/server:2022-latest
+      resources:
+        requests:
+          cpu: 1
+          memoryInGb: 2
+      ports:
+      - port: 1433
+      environmentVariables:
+      - name: MSSQL_PID
+        value: "Developer"
+      - name: ACCEPT_EULA
+        value: "Y"
+      - name: MSSQL_SA_PASSWORD
+        value: Test_1234567
+  osType: Linux
+  ipAddress:
+    type: Public
+    ports:
+    - protocol: tcp
+      port: 8080
+    - protocol: tcp
+      port: 1433
+  imageRegistryCredentials:
+  - server: psrepoo.azurecr.io
+    username: psrepoo
+    password: Cii1muydtzsnBq6lxzxLyQelXBxHA59qqMwcTsZvkfNal1m7w40tJQQJ99CDAC5RqLJEqg7NAAACAZCRT6QR
+tags: {test: test}
+type: Microsoft.ContainerInstance/containerGroups

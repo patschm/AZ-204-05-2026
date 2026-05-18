@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "ps_myfun": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7153",
+      "launchBrowser": false
+    }
+  }
+}
